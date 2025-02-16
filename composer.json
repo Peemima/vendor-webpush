@@ -3,7 +3,7 @@
     "description": "A project using WebPush",
     "require": {
         "php": "^8.0",
-        "google/web-push": "^1.0"
+        "minishlink/web-push": "^1.0"
     },
     "autoload": {
         "psr-4": {
