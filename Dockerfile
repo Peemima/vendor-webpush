@@ -17,14 +17,14 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy project files
+# Copy composer files first to leverage Docker cache
+COPY composer.json composer.lock ./
+
+# Install Composer dependencies with verbose output
+RUN composer install -v --ignore-platform-reqs
+
+# Copy the rest of the project files
 COPY . .
 
-# Copy the shell script
-COPY install_composer.sh /usr/local/bin/install_composer.sh
-
-# Make the script executable
-RUN chmod +x /usr/local/bin/install_composer.sh
-
-# Execute the shell script to install Composer dependencies
-RUN /usr/local/bin/install_composer.sh
+# Start Apache
+CMD ["apache2-foreground"]
