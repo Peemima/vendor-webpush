@@ -20,5 +20,5 @@ WORKDIR /var/www/html
 # Copy project files
 COPY . .
 
-# Install dependencies with verbose output and redirect to a log file
-RUN composer install -v --ignore-platform-reqs > composer_output.txt 2>&1
+# Install dependencies with verbose output
+RUN composer install -v --ignore-platform-reqs
