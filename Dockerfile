@@ -20,5 +20,11 @@ WORKDIR /var/www/html
 # Copy project files
 COPY . .
 
-# Install dependencies with verbose output
-RUN composer install -v --ignore-platform-reqs
+# Copy the shell script
+COPY install_composer.sh /usr/local/bin/install_composer.sh
+
+# Make the script executable
+RUN chmod +x /usr/local/bin/install_composer.sh
+
+# Execute the shell script to install Composer dependencies
+RUN /usr/local/bin/install_composer.sh
